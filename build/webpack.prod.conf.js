@@ -113,7 +113,12 @@ const webpackConfig = merge(baseWebpackConfig, {
       // Path to compiled app
       path.join(__dirname, '../dist'),
       // List of endpoints you wish to prerender
-      [ '/', '/banana', '/blog', '/blog/first-article', '/blog/second-article' ]
+      [
+        '/',
+        '/banana',
+        '/blog',
+        ...utils.filesToRoutes('../src/posts', '.md', '/blog')
+      ]
     )
   ]
 })
