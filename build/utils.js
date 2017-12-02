@@ -33,7 +33,7 @@ exports.filesToRoutes = function (directory, extension, routePrefix = '') {
   return findFilesInDir(path.join(__dirname, directory), extension)
     .map((filename) => {
       return filename
-        .replace(path.join(__dirname, directory), routePrefix + '/')
+        .replace(path.join(__dirname, directory), routePrefix)
         .replace(extension, '')
     })
 }

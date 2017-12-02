@@ -1,6 +1,6 @@
 ---
 title: Article Two from MD
-description:
+description: This is another article
 created: 2017-10-01T08:01:50+02
 updated:
 status: publish
