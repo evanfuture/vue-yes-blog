@@ -13,23 +13,28 @@
 </template>
 
 <script>
+const posts = {};
+const req = require.context('../posts/', false, /\.md$/);
+
+req.keys().forEach((key) => {
+  posts[key] = req(key);
+});
 
 export default {
   name: 'blog',
   computed: {
     articles() {
-      return [
-        {
-          slug: 'first-article',
-          title: 'Article One',
-          description: 'This is article one\'s description',
-        },
-        {
-          slug: 'second-article',
-          title: 'Article Two',
-          description: 'This is article two\'s description',
-        },
-      ];
+      const articleArray = [];
+
+      Object.keys(posts).forEach((key) => {
+        const article = posts[key];
+        article.slug = key.replace('./', '').replace('.md', '');
+        articleArray.push(article);
+      });
+
+      return articleArray
+        .filter(post => post.status === 'publish')
+        .sort((a, b) => a.created < b.created);
     },
   },
 };
